@@ -1,0 +1,28 @@
+{
+  "name": "react-day-input",
+  "version": "1.0.0",
+  "description": "A simple date picker for react, powered by Moment.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ABASystems/react-day-input.git"
+  },
+  "keywords": [
+    "react",
+    "date",
+    "day",
+    "input",
+    "picker",
+    "calendar",
+    "widget"
+  ],
+  "author": "ABA Systems Pty Ltd",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ABASystems/react-day-input/issues"
+  },
+  "homepage": "https://github.com/ABASystems/react-day-input#readme"
+}
