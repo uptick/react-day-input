@@ -1,0 +1,102 @@
+div.rendered-react-date-input
+  position: relative
+
+  div.date-calendar
+    position: absolute
+    width: 320px
+    height: 300px
+    top: 100%
+    left: 0
+
+    background: #fff
+
+    z-index: 10
+
+    display: flex
+    flex-direction: column
+
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175)
+
+    div.header
+      flex-basis: 5rem
+      flex-grow: 0
+      flex-shrink: 0
+      display: flex
+      flex-direction: row
+
+      background: #438AFE
+      color: #fff
+
+      > div
+        flex: 1
+        &.button
+          flex-basis: 4rem
+          flex-grow: 0
+          flex-shrink: 0
+          cursor: pointer
+          font-size: 1.1rem
+        &.title
+          text-align: center
+          font-size: 1.5rem
+
+        display: flex
+        flex-direction: row
+        align-items: center
+        justify-content: center
+
+    div.day-labels
+      flex-basis: 4rem
+      flex-grow: 0
+      flex-shrink: 0
+      display: flex
+      flex-direction: row
+
+      background: #549EFD
+      color: #fff
+
+      > div
+        flex: 1
+
+        display: flex
+        flex-direction: row
+        align-items: center
+        justify-content: center
+
+    div.week
+      flex: 1
+      display: flex
+      flex-direction: row
+
+      div.day
+        flex: 1
+        cursor: pointer
+
+        position: relative
+
+        span.number
+          position: absolute
+          width: 100%
+          top: 50%
+          transform: translateY(-50%)
+          text-align: center
+
+        background: #eee
+        &.in-month
+          background: #fff
+        &:hover
+          background: #ddd
+
+        $selected-circle-size: 2.5rem
+        &.selected
+          color: #fff
+          &:before
+            position: absolute
+            content: ' '
+            top: 50%
+            left: 50%
+            margin-left: -$selected-circle-size/2
+            width: $selected-circle-size
+            height: $selected-circle-size
+            border-radius: $selected-circle-size/2
+            background: #438AFE
+            transform: translateY(-50%)

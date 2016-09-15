@@ -2,9 +2,13 @@
   "name": "react-day-input",
   "version": "1.0.0",
   "description": "A simple date picker for react, powered by Moment.",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "buildjs": "./node_modules/webpack/bin/webpack.js",
+    "buildsass": "./node_modules/node-sass/bin/node-sass src/day-input.sass dist/react-day-input.css",
+    "build": "npm run buildjs; npm run buildsass",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -24,5 +28,23 @@
   "bugs": {
     "url": "https://github.com/ABASystems/react-day-input/issues"
   },
-  "homepage": "https://github.com/ABASystems/react-day-input#readme"
+  "homepage": "https://github.com/ABASystems/react-day-input#readme",
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "moment": "^2.15.0",
+    "react": "^15.3.1",
+    "react-addons-shallow-compare": "^15.3.1",
+    "react-dom": "^15.3.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-0": "^6.5.0",
+    "node-sass": "^3.10.0",
+    "webpack": "^1.13.2",
+    "webpack-node-externals": "^1.4.3"
+  }
 }
