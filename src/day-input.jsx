@@ -162,7 +162,7 @@ class DayInput extends React.Component {
       calendar = this.renderCalendar();
     }
     return (
-      <div className="rendered-react-date-input" ref="widget">
+      <div className="rendered-react-day-input" ref="widget">
         <input
           ref="textValue"
           type="text"

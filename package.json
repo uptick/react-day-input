@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "buildjs": "./node_modules/webpack/bin/webpack.js",
-    "buildsass": "./node_modules/node-sass/bin/node-sass src/day-input.sass dist/react-day-input.css",
-    "build": "npm run buildjs; npm run buildsass",
+    "buildcss": "./node_modules/node-sass/bin/node-sass src/day-input.sass dist/react-day-input.css",
+    "build": "npm run buildjs; npm run buildcss",
     "prepublish": "npm run build"
   },
   "repository": {
