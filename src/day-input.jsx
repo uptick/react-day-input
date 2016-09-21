@@ -54,9 +54,20 @@ class DayInput extends React.Component {
 
   componentDidMount() {
     document.addEventListener('click', this.handlePageClick.bind(this));
+    this.refs.textValue.addEventListener('blur', this.handleBlur.bind(this));
   }
   componentWillUnmount() {
     document.removeEventListener('click', this.handlePageClick.bind(this));
+    this.refs.textValue.removeEventListener('blur', this.handleBlur.bind(this));
+  }
+  componentWillUpdate(nextProps, nextState) {
+    if (
+      this.state.calendarOpen
+      && !nextState.calendarOpen
+      && typeof nextProps.onBlur === 'function'
+    ) {
+      nextProps.onBlur();
+    }
   }
 
   handlePageClick() {
@@ -65,6 +76,11 @@ class DayInput extends React.Component {
       && this.state.calendarOpen
       && !(this.refs.widget !== event.target && this.refs.widget.contains(event.target))
     ) {
+      this.hideCalendar();
+    }
+  }
+  handleBlur(event) {
+    if (this.state.calendarOpen && event.relatedTarget !== null) {
       this.hideCalendar();
     }
   }
