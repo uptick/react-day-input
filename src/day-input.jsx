@@ -52,14 +52,6 @@ class DayInput extends React.Component {
     }
   }
 
-  componentDidMount() {
-    document.addEventListener('click', this.handlePageClick.bind(this));
-    this.refs.textValue.addEventListener('blur', this.handleBlur.bind(this));
-  }
-  componentWillUnmount() {
-    document.removeEventListener('click', this.handlePageClick.bind(this));
-    this.refs.textValue.removeEventListener('blur', this.handleBlur.bind(this));
-  }
   componentWillUpdate(nextProps, nextState) {
     if (
       this.state.calendarOpen
@@ -76,11 +68,6 @@ class DayInput extends React.Component {
       && this.state.calendarOpen
       && !(this.refs.widget !== event.target && this.refs.widget.contains(event.target))
     ) {
-      this.hideCalendar();
-    }
-  }
-  handleBlur(event) {
-    if (this.state.calendarOpen && event.relatedTarget !== null) {
       this.hideCalendar();
     }
   }
@@ -137,7 +124,12 @@ class DayInput extends React.Component {
             day={day.clone()}
             inMonth={(day.month() == this.state.currentMonth)}
             selected={(day.format('x') === this.props.dateValue)}
-            setDateValue={(newValue) => {this.props.onDateChange(newValue)}}
+            setDateValue={(newValue) => {
+              if (this.props.disabled) {
+                return;
+              }
+              this.props.onDateChange(newValue);
+            }}
           />
         );
         day.add(1, 'days');
@@ -153,7 +145,9 @@ class DayInput extends React.Component {
     }
 
     return (
-      <div className="date-calendar">
+      <div className={classNames('date-calendar', {
+        hidden: !this.state.calendarOpen,
+      })}>
         <div className="header">
           <div className="button" onClick={this.previousMonth.bind(this)}>Prev</div>
           <div className="title">{firstMonthDay.format('MMMM YYYY')}</div>
@@ -173,22 +167,31 @@ class DayInput extends React.Component {
     );
   }
   render() {
-    var calendar;
-    if (this.state.calendarOpen) {
-      calendar = this.renderCalendar();
-    }
     return (
-      <div className="rendered-react-day-input" ref="widget">
+      <div
+        className="rendered-react-day-input"
+        ref="widget"
+        tabIndex="-1"
+        onBlur={(event) => {
+          var currentTarget = event.currentTarget;
+          setTimeout(() => {
+            if (!currentTarget.contains(document.activeElement)) {
+              this.hideCalendar();
+            }
+          }, 0);
+        }}
+      >
         <input
           ref="textValue"
           type="text"
           value={this.props.textValue}
           className="form-control"
+          onChange={() => {this.props.onTextChange(this.refs.textValue.value);}}
           onFocus={this.showCalendar.bind(this)}
-          onChange={() => {this.props.onTextChange(this.refs.textValue.value)}}
           placeholder={this.props.placeholder}
+          disabled={this.props.disabled}
         />
-        {calendar}
+        {this.renderCalendar()}
       </div>
     );
   }
