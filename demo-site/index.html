@@ -1,0 +1,34 @@
+---
+layout: base
+---
+<div class="content-container">
+  <div class="page-header">
+    <h1>Live Demo</h1>
+  </div>
+  <p>To participate in the demo you will need:</p>
+  <ul>
+    <li>Javascript enabled</li>
+    <li>A modern browser</li>
+  </ul>
+
+  <h2>Strict Input</h2>
+  <p>The strict input helper will validate itself to the given Moment format. When the input loses
+  focus it will replace its contents with the closest valid match, or erase itself if one cannot be
+  found.</p>
+  <div class="demo-mount-strict"></div>
+  <code
+    class="script"
+    data-source="{{ site.baseurl }}/strict-helper.jsx"
+  >Loading ...</code>
+
+  <h2>Direct Use</h2>
+  <p>At its core, React Day Input is just a text input that also displays a calendar. It supports
+  the normal input events for both the text box and the popup.</p>
+  <p>There is no validation built in by default, and in many cases it is more appropriate to write
+  your own simple validation above the component.</p>
+  <div class="demo-mount-direct"></div>
+  <code
+    class="script"
+    data-source="{{ site.baseurl }}/direct-use.jsx"
+  >Loading ...</code>
+</div>
