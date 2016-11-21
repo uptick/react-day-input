@@ -51,7 +51,7 @@ class MyForm extends React.Component {
 }
 ```
 
-Optionally, include the built css with an import:
+And include the built css with an import:
 
 ```scss
 @import 'node_modules/react-day-input/dist/react-day-input.css';
