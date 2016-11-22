@@ -20,6 +20,9 @@ class DemoForm extends React.Component {
   handleDeliveryDateChange(newDate) {
     this.setState({deliveryDate: newDate});
   }
+  handleErase(event) {
+    this.setState({deliveryDate: null});
+  }
 
   render() {
     var deliveryDisplay = 'Nothing';
@@ -27,9 +30,14 @@ class DemoForm extends React.Component {
       deliveryDisplay = Moment(this.state.deliveryDate, 'x').format(GUI_FORMAT);
     }
 
+    var eraser;
+    if (this.state.deliveryDate !== null) {
+      eraser = (<span> (<a href="#" onClick={this.handleErase.bind(this)}>Erase</a>)</span>);
+    }
+
     return (
       <div>
-        <p>The chosen delivery date is: {deliveryDisplay}</p>
+        <p>The chosen delivery date is: {deliveryDisplay}{eraser}</p>
         <label>Delivery Date</label>
         <StrictDayInput
           placeholder="Choose a date"

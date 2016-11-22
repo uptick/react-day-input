@@ -9,79 +9,83 @@ class StrictDayInput extends React.Component {
 
     this.state = {
       ...this.state,
-
-      date: this.props.value,
-      text: this.props.value !== null ? Moment(this.props.value, 'x').format(this.props.format) : '',
+      text: '',
     };
+    if (typeof this.props.value === 'undefined') {
+      this.state.date = null;
+    }
+    else {
+      this.state.date = this.props.value;
+      if (this.state.date !== null) {
+        this.state.text = Moment(this.props.value, 'x').format(this.props.format);
+      }
+    }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.value === null) {
-      this.setState({
-        date: null,
-        text: '',
-      });
-    }
-    else {
-      if (this.state.date === null) {
+    if (nextProps.value !== this.props.value) {
+      if (typeof nextProps.value === 'undefined') {
         this.setState({
-          date: nextProps.value,
-          text: Moment(nextProps.value, 'x').format(nextProps.format),
+          date: null,
         });
       }
       else {
-        if (this.state.date !== nextProps.value) {
+        if (nextProps.value === null) {
           this.setState({
-            date: nextProps.value,
-            text: Moment(nextProps.value, 'x').format(nextProps.format),
+            date: null,
+            text: '',
           });
+        }
+        else {
+          if (nextProps.value !== this.state.date) {
+            this.setState({
+              date: nextProps.value,
+              text: Moment(nextProps.value, 'x').format(this.props.format),
+            });
+          }
         }
       }
     }
+  }
+
+  updateValue() {
+    this.props.onChange(this.state.date);
   }
 
   handleTextChange(newText) {
     var parsedDate = Moment(newText, this.props.format);
     if (parsedDate.isValid()) {
       this.setState({
-        date: +parsedDate,
+        date: parsedDate.format('x'),
         text: newText,
-      }, () => {
-        this.props.onChange(this.state.date);
-      });
+      }, this.updateValue.bind(this));
     }
     else {
       this.setState({
         date: null,
         text: newText,
-      }, () => {
-        this.props.onChange(this.state.date);
-      });
+      }, this.updateValue.bind(this));
     }
   }
   handleDateChange(newDate) {
     this.setState({
       date: newDate,
       text: Moment(newDate, 'x').format(this.props.format),
-    });
+    }, this.updateValue.bind(this));
   }
   handleBlur() {
     var parsedDate = Moment(this.state.text, this.props.format);
     if (parsedDate.isValid()) {
       this.setState({
-        date: +parsedDate,
+        date: parsedDate.format('x'),
         text: parsedDate.format(this.props.format),
-      }, () => {
-        this.props.onChange(this.state.date);
-      });
+      }, this.updateValue.bind(this));
     }
     else {
       this.setState({
         date: null,
         text: '',
-      }, () => {
-        this.props.onChange(this.state.date);
-      });
+      }, this.updateValue.bind(this));
     }
   }
 

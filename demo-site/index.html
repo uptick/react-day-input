@@ -15,6 +15,17 @@ layout: base
   <p>The strict input helper will validate itself to the given Moment format. When the input loses
   focus it will replace its contents with the closest valid match, or erase itself if one cannot be
   found.</p>
+  <p>Note: To support the ability to erase an existing date, the "value" is tracked in three
+  potential states:</p>
+  <ul>
+    <li>Null - actually and explicitly nothing, changing the value to null will erase the current
+    text.</li>
+    <li>Undefined - no value set, but retain any existing text value the user has entered.</li>
+    <li>String 'x' formatted date.</li>
+  </ul>
+  <p>Taking the given value from the onChange event handler will handle all of this automatically.
+  You will just need to be aware of this behaviour when reading the current value in the parent
+  state.</p>
   <div class="demo-mount-strict"></div>
   <code
     class="script"
