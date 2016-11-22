@@ -21,6 +21,7 @@ class DemoForm extends React.Component {
     this.setState({deliveryDate: newDate});
   }
   handleErase(event) {
+    event.preventDefault();
     this.setState({deliveryDate: null});
   }
 
