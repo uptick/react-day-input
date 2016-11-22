@@ -7,7 +7,7 @@ module.exports = {
     path: __dirname + '/dist',
     filename: 'react-day-input.js',
     library: 'react-day-input',
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
   },
   module: {
     loaders: [
@@ -16,14 +16,14 @@ module.exports = {
         exclude: /(node_modules)/,
         loader: 'babel',
         query: {
-          presets: ['react', 'es2015', 'stage-0'],
-        }
-      }
+          presets: [
+            'react',
+            'es2015',
+            'stage-0',
+          ],
+        },
+      },
     ],
   },
-  resolve: {
-    root: [],
-    extensions: ['', '.js', '.jsx']
-  },
-  externals: NodeExternals()
+  externals: NodeExternals(),
 };
