@@ -1,5 +1,5 @@
 layouts_dir: 'node_modules/abas-demo-site/dist'
-baseurl: /react-day-input
+baseurl: /react-day-input/
 
 package_name: React Day Input
 package_github_url: https://github.com/ABASystems/react-day-input
