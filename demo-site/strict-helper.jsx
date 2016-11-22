@@ -26,12 +26,9 @@ class DemoForm extends React.Component {
 
   render() {
     var deliveryDisplay = 'Nothing';
-    if (this.state.deliveryDate !== null) {
-      deliveryDisplay = Moment(this.state.deliveryDate, 'x').format(GUI_FORMAT);
-    }
-
     var eraser;
-    if (this.state.deliveryDate !== null) {
+    if (typeof this.state.deliveryDate !== 'undefined' && this.state.deliveryDate !== null) {
+      deliveryDisplay = Moment(this.state.deliveryDate, 'x').format(GUI_FORMAT);
       eraser = (<span> (<a href="#" onClick={this.handleErase.bind(this)}>Erase</a>)</span>);
     }
 

@@ -49,7 +49,12 @@ class StrictDayInput extends React.Component {
   }
 
   updateValue() {
-    this.props.onChange(this.state.date);
+    if (this.state.date !== null) {
+      this.props.onChange(this.state.date);
+    }
+    else {
+      this.props.onChange(this.state.text === '' ? null : undefined)
+    }
   }
 
   handleTextChange(newText) {
