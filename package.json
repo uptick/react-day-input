@@ -21,7 +21,7 @@
   "dependencies": {
     "abas-demo-site": "^1.0.6",
     "moment": "^2.15.0",
-    "react-day-input": "^1.0.8"
+    "react-day-input": "^1.0.9"
   },
   "devDependencies": {
     "babel-cli": "^6.14.0",
