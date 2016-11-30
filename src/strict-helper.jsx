@@ -103,12 +103,14 @@ class StrictDayInput extends React.Component {
         onTextChange={this.handleTextChange.bind(this)}
         onDateChange={this.handleDateChange.bind(this)}
         onBlur={this.handleBlur.bind(this)}
+        rightMounted={this.props.rightMounted}
       />
     );
   }
 }
 StrictDayInput.defaultProps = {
   format: 'DD/MM/YYYY',
+  rightMounted: false,
 };
 
 export default StrictDayInput

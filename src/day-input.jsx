@@ -147,6 +147,7 @@ class DayInput extends React.Component {
     return (
       <div className={classNames('date-calendar', {
         hidden: !this.state.calendarOpen,
+        'right-mounted': this.props.rightMounted,
       })}>
         <div className="header">
           <div className="button" onClick={this.previousMonth.bind(this)}>Prev</div>
@@ -196,5 +197,8 @@ class DayInput extends React.Component {
     );
   }
 }
+DayInput.defaultProps = {
+  rightMounted: false,
+};
 
 export default DayInput
