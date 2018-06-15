@@ -1,6 +1,6 @@
 {
   "name": "react-day-input",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "A simple date picker for React, powered by Moment.",
   "main": "index.js",
   "scripts": {
