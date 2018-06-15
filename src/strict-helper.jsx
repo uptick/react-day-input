@@ -48,12 +48,12 @@ class StrictDayInput extends React.Component {
     }
   }
 
-  updateValue() {
+  updateValue = (wasBlur) => {
     if (this.state.date !== null) {
-      this.props.onChange(this.state.date);
+      this.props.onChange(this.state.date, !!wasBlur);
     }
     else {
-      this.props.onChange(this.state.text === '' ? null : undefined)
+      this.props.onChange(this.state.text === '' ? null : undefined, !!wasBlur)
     }
   }
 
@@ -63,20 +63,26 @@ class StrictDayInput extends React.Component {
       this.setState({
         date: parsedDate.format('x'),
         text: newText,
-      }, this.updateValue.bind(this));
+      }, () => {
+        this.updateValue(false)
+      });
     }
     else {
       this.setState({
         date: null,
         text: newText,
-      }, this.updateValue.bind(this));
+      }, () => {
+        this.updateValue(false)
+      });
     }
   }
   handleDateChange(newDate) {
     this.setState({
       date: newDate,
       text: Moment(newDate, 'x').format(this.props.format),
-    }, this.updateValue.bind(this));
+    }, () => {
+      this.updateValue(false)
+    });
   }
   handleBlur() {
     var parsedDate = Moment(this.state.text, this.props.format);
@@ -84,13 +90,17 @@ class StrictDayInput extends React.Component {
       this.setState({
         date: parsedDate.format('x'),
         text: parsedDate.format(this.props.format),
-      }, this.updateValue.bind(this));
+      }, () => {
+        this.updateValue(true)
+      });
     }
     else {
       this.setState({
         date: null,
         text: '',
-      }, this.updateValue.bind(this));
+      }, () => {
+        this.updateValue(true)
+      });
     }
   }
 
