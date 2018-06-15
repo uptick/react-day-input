@@ -105,7 +105,8 @@ class DayInput extends React.Component {
   render() {
     return (
       <div
-        className="rendered-react-day-input"
+        className={classNames('rendered-react-day-input', this.props.className)}
+        style={this.props.style}
         ref="widget"
         tabIndex="-1"
         onBlur={this.handleBlur}
@@ -114,8 +115,8 @@ class DayInput extends React.Component {
           ref="textValue"
           type="text"
           value={this.props.textValue}
-          className={classNames(this.props.className, 'form-control')}
-          style={this.props.style}
+          className={classNames('form-control', this.props.inputClassName)}
+          style={this.props.inputStyle}
           onChange={this.handleTextChange}
           onFocus={this.showCalendar}
           placeholder={this.props.placeholder}
@@ -143,6 +144,8 @@ DayInput.defaultProps = {
   weekdayFormat: 'ddd',
   className: [],
   style: {},
+  inputClassName: [],
+  inputStyle: {},
 };
 
 export default DayInput
