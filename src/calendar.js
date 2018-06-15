@@ -19,6 +19,7 @@ class CalendarDay extends React.Component {
         className={classNames('day', {
           'in-month': this.props.inMonth,
           'selected': this.props.selected,
+          'highlighted': typeof this.props.highlight == 'function' && this.props.highlight(this.props.day.format('x'))
         })}
         onClick={this.handleClick}
       >
@@ -61,6 +62,7 @@ class Calendar extends React.Component {
             inMonth={(day.month() == this.props.month)}
             selected={(day.format('x') === this.props.value)}
             onChange={this.handleChange}
+            highlight={this.props.dayHighlight}
           />
         );
         day.add(1, 'days');
