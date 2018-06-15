@@ -74,13 +74,22 @@ class Calendar extends React.Component {
       );
     }
 
-    let weekLabels = []
+    let dayLabels = []
     let firstWeekDay = moment().startOf('week')
     let weekDay = 0
     while (weekDay < 7) {
-      weekLabels.push(
-        <div>
-          {firstWeekDay.clone().add({days: weekDay}).format(this.props.weekdayFormat)}
+      let thisDay = firstWeekDay.clone().add({days: weekDay})
+      let label
+      if (typeof this.props.weekdayFormat === 'function') {
+        label = this.props.weekdayFormat(+thisDay.format('x'))
+      }
+      else {
+        label = thisDay.format(this.props.weekdayFormat)
+
+      }
+      dayLabels.push(
+        <div key={`day-label-${weekDay}`}>
+          {label}
         </div>
       )
       weekDay++
@@ -97,7 +106,7 @@ class Calendar extends React.Component {
           <div className="button" onClick={this.props.nextMonth}>Next</div>
         </div>
         <div className="day-labels">
-          {weekLabels}
+          {dayLabels}
         </div>
         {weeks}
       </div>
