@@ -9,7 +9,7 @@
     "build-js": "./node_modules/webpack/bin/webpack.js",
     "build-css": "./node_modules/node-sass/bin/node-sass src/day-input.sass dist/react-day-input.css",
     "build": "npm run build-js && npm run build-css",
-    "prepublish": "npm run build"
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",

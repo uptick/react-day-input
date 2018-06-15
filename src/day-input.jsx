@@ -127,6 +127,7 @@ class DayInput extends React.Component {
           open={this.state.calendarOpen}
           disabled={this.props.disabled}
           rightMounted={this.props.rightMounted}
+          weekdayFormat={this.props.weekdayFormat}
 
           onChange={this.handleDateChange}
           previousMonth={this.previousMonth}
@@ -138,6 +139,7 @@ class DayInput extends React.Component {
 }
 DayInput.defaultProps = {
   rightMounted: false,
+  weekdayFormat: 'ddd',
 };
 
 export default DayInput

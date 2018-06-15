@@ -45,10 +45,7 @@ class Calendar extends React.Component {
 
   render() {
     var firstMonthDay = moment([this.props.year, this.props.month, 1]);
-    var firstDay = firstMonthDay.clone();
-    while (firstDay.weekday() !== 0) {
-      firstDay.subtract(1, 'days');
-    }
+    var firstDay = firstMonthDay.clone().startOf('week');
 
     var weeks = [];
     var day = firstDay.clone();
@@ -77,6 +74,18 @@ class Calendar extends React.Component {
       );
     }
 
+    let weekLabels = []
+    let firstWeekDay = moment().startOf('week')
+    let weekDay = 0
+    while (weekDay < 7) {
+      weekLabels.push(
+        <div>
+          {firstWeekDay.clone().add({days: weekDay}).format(this.props.weekdayFormat)}
+        </div>
+      )
+      weekDay++
+    }
+
     return (
       <div className={classNames('rendered-react-day-input-calendar', {
         hidden: !this.props.open,
@@ -88,13 +97,7 @@ class Calendar extends React.Component {
           <div className="button" onClick={this.props.nextMonth}>Next</div>
         </div>
         <div className="day-labels">
-          <div>Sun</div>
-          <div>Mon</div>
-          <div>Tue</div>
-          <div>Wed</div>
-          <div>Thu</div>
-          <div>Fri</div>
-          <div>Sat</div>
+          {weekLabels}
         </div>
         {weeks}
       </div>
@@ -103,6 +106,7 @@ class Calendar extends React.Component {
 }
 Calendar.defaultProps = {
   rightMounted: false,
+  weekdayFormat: 'ddd',
 };
 
 export default Calendar
