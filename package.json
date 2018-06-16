@@ -1,6 +1,6 @@
 {
   "name": "react-day-input",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "A simple date picker for React, powered by Moment.",
   "main": "dist/react-day-input.cjs.js",
   "module": "dist/react-day-input.esm.js",
