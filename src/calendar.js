@@ -19,7 +19,8 @@ class CalendarDay extends React.Component {
         className={classNames('day', {
           'in-month': this.props.inMonth,
           'selected': this.props.selected,
-          'highlighted': typeof this.props.highlight == 'function' && this.props.highlight(this.props.day.format('x'))
+          'highlighted': typeof this.props.highlight == 'function' && this.props.highlight(this.props.day.format('x')),
+          'not-allowed': !this.props.allowed,
         })}
         onClick={this.handleClick}
       >
@@ -30,13 +31,7 @@ class CalendarDay extends React.Component {
 }
 
 class Calendar extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.handleChange = ::this.handleChange;
-  }
-
-  handleChange(newValue) {
+  handleChange = (newValue) => {
     if (this.props.disabled) {
       return;
     }
@@ -52,14 +47,16 @@ class Calendar extends React.Component {
     while (day.month() == this.props.month || day.month() == firstDay.month()) {
       var days = [];
       while (days.length < 7) {
+        let intDay = +day.format('x')
         days.push(
           <CalendarDay
-            key={`day-${day.format('x')}`}
+            key={`day-${intDay}`}
             day={day.clone()}
             inMonth={(day.month() == this.props.month)}
-            selected={(day.format('x') === this.props.value)}
+            selected={(intDay == this.props.value)}
             onChange={this.handleChange}
             highlight={this.props.dayHighlight}
+            allowed={this.props.dayAllowed(intDay)}
           />
         );
         day.add(1, 'days');
@@ -116,6 +113,8 @@ class Calendar extends React.Component {
 Calendar.defaultProps = {
   rightMounted: false,
   weekdayFormat: 'ddd',
+
+  dayAllowed: function(day) {return true},
 };
 
 export default Calendar

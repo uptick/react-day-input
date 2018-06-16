@@ -57,7 +57,7 @@ class StrictDayInput extends React.Component {
     }
   }
 
-  handleTextChange(newText) {
+  handleTextChange = (newText) => {
     var parsedDate = Moment(newText, this.props.format);
     if (parsedDate.isValid()) {
       this.setState({
@@ -76,7 +76,7 @@ class StrictDayInput extends React.Component {
       });
     }
   }
-  handleDateChange(newDate) {
+  handleDateChange = (newDate) => {
     this.setState({
       date: newDate,
       text: Moment(newDate, 'x').format(this.props.format),
@@ -84,7 +84,7 @@ class StrictDayInput extends React.Component {
       this.updateValue(false)
     });
   }
-  handleBlur() {
+  handleBlur = () => {
     var parsedDate = Moment(this.state.text, this.props.format);
     if (parsedDate.isValid()) {
       this.setState({
@@ -110,9 +110,9 @@ class StrictDayInput extends React.Component {
         {...this.props}
         textValue={this.state.text}
         dateValue={this.state.date}
-        onTextChange={this.handleTextChange.bind(this)}
-        onDateChange={this.handleDateChange.bind(this)}
-        onBlur={this.handleBlur.bind(this)}
+        onTextChange={this.handleTextChange}
+        onDateChange={this.handleDateChange}
+        onBlur={this.handleBlur}
         rightMounted={this.props.rightMounted}
       />
     );

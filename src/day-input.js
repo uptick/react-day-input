@@ -55,6 +55,9 @@ class DayInput extends React.Component {
     setTimeout(() => {
       if (!currentTarget.contains(document.activeElement)) {
         this.hideCalendar();
+        if (typeof this.props.onBlur === 'function') {
+          this.props.onBlur()
+        }
       }
     }, 0);
   }
@@ -125,6 +128,8 @@ class DayInput extends React.Component {
           onChange={this.handleDateChange}
           previousMonth={this.previousMonth}
           nextMonth={this.nextMonth}
+
+          dayAllowed={this.props.dayAllowed}
         />
       </div>
     );
@@ -137,6 +142,8 @@ DayInput.defaultProps = {
   style: {},
   inputClassName: [],
   inputStyle: {},
+
+  dayAllowed: function(day) {return true},
 };
 
 export default DayInput

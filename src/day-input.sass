@@ -82,7 +82,8 @@ div.rendered-react-day-input-calendar
 
     div.day
       flex: 1
-      cursor: pointer
+      &:not(.not-allowed)
+        cursor: pointer
 
       position: relative
 
@@ -97,7 +98,7 @@ div.rendered-react-day-input-calendar
       background: #eee
       &.in-month
         background: #fff
-      &:hover
+      &:hover:not(.not-allowed)
         background: #ddd
 
       $selected-circle-size: 1.5rem
@@ -117,3 +118,5 @@ div.rendered-react-day-input-calendar
       &.highlighted
         color: #fff
         background: #5bc0de
+      &.not-allowed
+        opacity: 0.5
