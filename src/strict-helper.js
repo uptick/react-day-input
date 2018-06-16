@@ -1,7 +1,7 @@
 import React from 'react'
 import Moment from 'moment'
 
-import DayInput from './day-input.jsx'
+import DayInput from './day-input.js'
 
 class StrictDayInput extends React.Component {
   constructor(props) {

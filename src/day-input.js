@@ -8,15 +8,6 @@ class DayInput extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handleDateChange = ::this.handleDateChange;
-    this.handleTextChange = ::this.handleTextChange;
-    this.handleBlur = ::this.handleBlur;
-
-    this.showCalendar = ::this.showCalendar;
-    this.hideCalendar = ::this.hideCalendar;
-    this.previousMonth = ::this.previousMonth;
-    this.nextMonth = ::this.nextMonth;
-
     this.state = {
       ...this.state,
 
@@ -53,13 +44,13 @@ class DayInput extends React.Component {
     }
   }
 
-  handleDateChange(newValue) {
+  handleDateChange = (newValue) => {
     this.props.onDateChange(newValue);
   }
-  handleTextChange() {
+  handleTextChange = () => {
     this.props.onTextChange(this.refs.textValue.value);
   }
-  handleBlur(event) {
+  handleBlur = (event) => {
     var currentTarget = event.currentTarget;
     setTimeout(() => {
       if (!currentTarget.contains(document.activeElement)) {
@@ -68,20 +59,20 @@ class DayInput extends React.Component {
     }, 0);
   }
 
-  showCalendar() {
+  showCalendar = () => {
     this.setState(state => {
       state.calendarOpen = true;
       return state;
     });
   }
-  hideCalendar() {
+  hideCalendar = () => {
     this.setState(state => {
       state.calendarOpen = false;
       return state;
     });
   }
 
-  previousMonth() {
+  previousMonth = () => {
     this.setState(state => {
       state.currentMonth--;
       if (state.currentMonth < 0) {
@@ -91,7 +82,7 @@ class DayInput extends React.Component {
       return state;
     });
   }
-  nextMonth() {
+  nextMonth = () => {
     this.setState(state => {
       state.currentMonth++;
       if (state.currentMonth > 11) {

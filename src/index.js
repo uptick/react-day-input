@@ -1,5 +1,5 @@
-import DayInput from './day-input.jsx'
-import StrictDayInput from './strict-helper.jsx'
+import DayInput from './day-input.js'
+import StrictDayInput from './strict-helper.js'
 import Calendar from './calendar.js'
 
 export {
